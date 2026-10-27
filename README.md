@@ -6,7 +6,7 @@ the **privacy policy** and the **support** page, in English (`/`), Ukrainian
 
 ## Before deploying
 
-Open `build.py` and set:
+Open `build.py` and set (`SITE_BASE` is set by the GitHub workflow):
 
 - `SUPPORT_EMAIL` — the address users write to;
 - `APP_STORE_URL` — the App Store link, once the app is live (until then the
@@ -15,7 +15,12 @@ Open `build.py` and set:
 `python3 -I build.py` builds the site into `public/` to look at locally
 (`open public/index.html`, or `python3 -m http.server -d public`).
 
-## Deploy with Coolify
+## Live on GitHub Pages
+
+Every push to `main` builds the site (`.github/workflows/pages.yml`) and
+publishes it at **https://racot86.github.io/bridgecon-site/**.
+
+## Or deploy with Coolify
 
 1. New resource → this Git repository → build pack **Dockerfile**.
 2. Port **80**. Add your domain (e.g. `bridgecon.example.com`) and let Coolify

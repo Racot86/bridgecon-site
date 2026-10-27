@@ -7,8 +7,10 @@ Set SUPPORT_EMAIL and APP_STORE_URL below, then rebuild and redeploy.
 """
 import html, os, shutil
 
-SUPPORT_EMAIL = "support@example.com"   # the address users write to
+SUPPORT_EMAIL = "mayevskydv@gmail.com"   # the address users write to
 APP_STORE_URL = ""                       # the App Store link, once the app is live
+# Where the site sits on its host: "/" on its own domain, "/bridgecon-site/" on GitHub Pages.
+BASE = os.environ.get("SITE_BASE", "/")
 UPDATED = {"en": "27 October 2026", "uk": "27 жовтня 2026", "ru": "27 октября 2026"}
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -175,16 +177,16 @@ def page(lang, path, title, body, desc):
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(desc)}">
-<link rel="icon" href="/img/favicon-64.png"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
-<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="{BASE}img/favicon-64.png"><link rel="apple-touch-icon" href="{BASE}img/apple-touch-icon.png">
+<link rel="stylesheet" href="{BASE}style.css">
 </head><body>
 <header><div class="wrap"><nav>
-<a class="brand" href="/{prefix}"><img src="/img/icon-256.png" alt="">Bridge Con</a>
-<a href="/{prefix}support">{t["nav_support"]}</a><a href="/{prefix}privacy">{t["nav_privacy"]}</a>
+<a class="brand" href="{BASE}{prefix}"><img src="{BASE}img/icon-256.png" alt="">Bridge Con</a>
+<a href="{BASE}{prefix}support">{t["nav_support"]}</a><a href="{BASE}{prefix}privacy">{t["nav_privacy"]}</a>
 <span class="langs">{langs}</span>
 </nav></div></header>
 {body}
-<footer><div class="wrap">© 2026 Bridge Con · {t["footer"]} · <a href="/{prefix}privacy">{t["nav_privacy"]}</a> · <a href="/{prefix}support">{t["nav_support"]}</a></div></footer>
+<footer><div class="wrap">© 2026 Bridge Con · {t["footer"]} · <a href="{BASE}{prefix}privacy">{t["nav_privacy"]}</a> · <a href="{BASE}{prefix}support">{t["nav_support"]}</a></div></footer>
 </body></html>
 """
 
@@ -194,8 +196,8 @@ def home(lang):
              else f'<span class="btn off">{t["soon"]}</span>')
     cards = "".join(f'<div class="card"><h3>{html.escape(h)}</h3><p>{html.escape(p)}</p></div>' for h, p in t["features"])
     body = f"""<section class="hero"><div class="wrap">
-<img class="mark" src="/img/mark.png" alt="">
-<img class="icon" src="/img/icon-256.png" alt="Bridge Con">
+<img class="mark" src="{BASE}img/mark.png" alt="">
+<img class="icon" src="{BASE}img/icon-256.png" alt="Bridge Con">
 <h1>Bridge Con</h1><p class="tag">{t["tagline"]}</p>
 <p class="lead">{html.escape(t["lead"])}</p>{store}
 </div></section>
